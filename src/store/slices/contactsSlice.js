@@ -26,3 +26,5 @@ const {reducer,actions} = contactsSlice    //{reducer,actions} - будуть у
 
 
 export default reducer
+
+console.log(initialState);

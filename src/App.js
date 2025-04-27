@@ -1,8 +1,9 @@
-import React from 'react'
+import ContactPage from "./pages/ContactsPage/ContactPage"
+
 
 
 function App() {
-  return <>App</>
+  return <ContactPage/>
 }
 
 export default App

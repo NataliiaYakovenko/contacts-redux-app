@@ -1,30 +1,37 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { v4 as uuidv4 } from 'uuid'  // бібліотека для екповторного унікального id
+import { v4 as uuidv4 } from "uuid"; // бібліотека для екповторного унікального id
 
 const initialState = {
   contacts: [
     {
       id: uuidv4(),
-      fullname: 'Nataliia Yakovenko',
-      phoneNumber: '+380551234567'
+      fullname: "Nataliia Yakovenko",
+      phoneNumber: "+380551234567",
     },
     {
       id: uuidv4(),
-      fullname: 'Lidiia Yakovenko',
-      phoneNumber: '+380886875433'
-    }
+      fullname: "Lidiia Yakovenko",
+      phoneNumber: "+380886875433",
+    },
   ],
 };
 
 const contactsSlice = createSlice({
   initialState,
   name: "contacts",
-  reducers: {},
+  reducers: {
+    deleteContact: (state, { payload }) => {
+      state.contacts = state.contacts.filter((c) => {
+        return c.id !== payload;
+      });
+    },
+  },
 });
 
-const {reducer,actions} = contactsSlice    //{reducer,actions} - будуть у всіх випадках
+const { reducer, actions } = contactsSlice; //{reducer,actions} - будуть у всіх випадках
 
+export const {deleteContact} = actions
 
-export default reducer
+export default reducer;
 
 console.log(initialState);

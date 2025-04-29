@@ -1,23 +1,33 @@
 import React from "react";
 import { connect } from "react-redux";
-import { deleteContact } from "../../store/slices/contactsSlice";
+import { deleteContact, updateContact } from "../../store/slices/contactsSlice";
 
-function ContactsList({ contacts, deleteContactById }) {
-
-
-
+function ContactsList({ contacts, deleteContactById, updateContactById }) {
   return (
     <ul>
-      {contacts.map((contact) => {
+      {contacts.map((c) => {
         return (
-          <li key={contact.id}>
-            {JSON.stringify(contact)}{" "}
+          <li key={c.id}>
+            <label>
+              <input
+                type="checkbox"
+                checked={c.isFavourite}
+                onChange={({ target: { checked } }) => {
+                  updateContactById({
+                    id: c.id,
+                    data: { isFavourite: checked },
+                  });
+                }}
+              />
+              {JSON.stringify(c)}{" "}
+            </label>
+
             <button
               onClick={() => {
-                deleteContactById(contact.id);
+                deleteContactById(c.id);
               }}
             >
-              Delet
+              Delete
             </button>
           </li>
         );
@@ -33,6 +43,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   deleteContactById: (id) => {
     return dispatch(deleteContact(id));
+  },
+
+  updateContactById: ({ id, data }) => {
+    return dispatch(updateContact({ id, data }));
   },
 });
 

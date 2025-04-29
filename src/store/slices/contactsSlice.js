@@ -5,11 +5,13 @@ const initialState = {
   contacts: [
     {
       id: uuidv4(),
+      isFavourite: true,
       fullname: "Nataliia Yakovenko",
       phoneNumber: "+380551234567",
     },
     {
       id: uuidv4(),
+      isFavourite: false,
       fullname: "Lidiia Yakovenko",
       phoneNumber: "+380886875433",
     },
@@ -25,12 +27,22 @@ const contactsSlice = createSlice({
         return c.id !== payload;
       });
     },
+
+    updateContact: (state, { payload: { id, data } }) => {
+      const updateContactIndex = state.contacts.findIndex((c) => {
+      return  c.id === id;
+      });
+      state.contacts[updateContactIndex] = {
+        ...state.contacts[updateContactIndex],
+        ...data,
+      };
+    },
   },
 });
 
 const { reducer, actions } = contactsSlice; //{reducer,actions} - будуть у всіх випадках
 
-export const {deleteContact} = actions
+export const { deleteContact, updateContact } = actions;
 
 export default reducer;
 

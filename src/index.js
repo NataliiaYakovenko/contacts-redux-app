@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import contactsSlice from './store/slices/contactsSlice'
 import store from './store/store'
 import { Provider } from "react-redux";
 

@@ -30,19 +30,23 @@ const contactsSlice = createSlice({
 
     updateContact: (state, { payload: { id, data } }) => {
       const updateContactIndex = state.contacts.findIndex((c) => {
-      return  c.id === id;
+        return c.id === id;
       });
       state.contacts[updateContactIndex] = {
         ...state.contacts[updateContactIndex],
         ...data,
       };
     },
+
+    createContact: (state, { payload }) => {
+      state.contacts.push({ ...payload, isFavourite: false, id: uuidv4() });
+    },
   },
 });
 
 const { reducer, actions } = contactsSlice; //{reducer,actions} - будуть у всіх випадках
 
-export const { deleteContact, updateContact } = actions;
+export const { deleteContact, updateContact, createContact } = actions;
 
 export default reducer;
 

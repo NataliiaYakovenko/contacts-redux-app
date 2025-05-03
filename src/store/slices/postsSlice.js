@@ -7,7 +7,7 @@ const initialState = {
   error: null,
 };
 
-export const getPostThunc = createAsyncThunk(
+export const getPostThunk = createAsyncThunk(
   "posts/getPosts",
   async (payload, thuncApi) => {
     try {
@@ -24,15 +24,15 @@ const postsSlice = createSlice({
   name: "posts",
   reducers: {},
   extraReducers: (bulder) => {
-    bulder.addCase(getPostThunc.pending, (state, action) => {
+    bulder.addCase(getPostThunk.pending, (state, action) => {
       state.isFetching = true;
       state.error = null;
     });
-    bulder.addCase(getPostThunc.fulfilled, (state, { payload }) => {
+    bulder.addCase(getPostThunk.fulfilled, (state, { payload }) => {
       state.posts = payload;
       state.isFetching = false;
     });
-    bulder.addCase(getPostThunc.rejected, (state, { payload }) => {
+    bulder.addCase(getPostThunk.rejected, (state, { payload }) => {
       state.isFetching = false;
       state.error = payload;
     });

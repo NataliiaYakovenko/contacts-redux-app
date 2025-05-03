@@ -1,44 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
 import contactsReducer from "./slices/contactsSlice";
 import postsReducer from "./slices/postsSlice";
+import usersReducer from './slices/usersSlice'
 
 const store = configureStore({
   reducer: {
     contactsData: contactsReducer,
-    postsSlice: postsReducer,
+    postsList: postsReducer,
+    usersList: usersReducer,
   },
 });
 
 export default store;
 
-/*
-contactsList:{
-
-contacts: [
-    {
-      id: uuidv4(),
-      isFavourite: true,
-      fullname: "Nataliia Yakovenko",
-      phoneNumber: "+380551234567",
-    },
-    {
-      id: uuidv4(),
-      isFavourite: false,
-      fullname: "Lidiia Yakovenko",
-      phoneNumber: "+380886875433",
-    },
-  ]
-}
-
- postsList:{
- 
- posts: [],
-   isFetching: false,
-   error: null
-   
-
- }
-
-
-
-*/

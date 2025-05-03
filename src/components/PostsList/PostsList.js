@@ -1,6 +1,12 @@
 import { connect } from "react-redux";
+import { useEffect } from "react";
+import { getPostThunc } from "../../store/slices/postsSlice";
 
-function PostsList({ posts, isFetching, error }) {
+function PostsList({ posts, isFetching, error,getPosts }) {
+
+  useEffect(()=>{
+    getPosts()
+  },[])
 
   const mapPosts = p => (
   <li key={p.id}>
@@ -21,4 +27,8 @@ return (
 
 const mapStateToProps = (state) => state.postsSlice;
 
-export default connect(mapStateToProps)(PostsList);
+const mapDispatchToProps= dispatch=>({
+  getPosts:()=>dispatch(getPostThunc())
+})
+
+export default connect(mapStateToProps,mapDispatchToProps)(PostsList);
